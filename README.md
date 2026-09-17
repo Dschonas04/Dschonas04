@@ -122,17 +122,13 @@ The material is German — the products are the English part of this profile.
 </p>
 
 <p align="center">
-  <img alt="Streak" src="https://streak-stats.demolab.com/?user=Dschonas04&hide_border=true&ring=c2410c&fire=c2410c&currStreakLabel=c2410c">
-</p>
-
-<p align="center">
   <sub>
-    The two cards are drawn by
-    <a href="karten.py">karten.py</a> in this repository and redrawn nightly by
-    a workflow — the usual service for this answers 503 often enough that a
-    broken image would be the normal state. Private contributions are counted
-    in; most of my work sits in private repositories, so the public numbers say
-    less than they look like. The streak card is third-party.
+    Both cards are drawn by <a href="karten.py">karten.py</a> in this
+    repository and redrawn nightly by a workflow — the usual service for this
+    answers 503 often enough that a broken image would be the normal state.
+    Private contributions are counted in the commit figure; the repository
+    count and the languages are the public ones. Most of my work sits in
+    private repositories, so these numbers say less than they look like.
   </sub>
 </p>
 
