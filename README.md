@@ -115,8 +115,10 @@ The material is German — the products are the English part of this profile.
 ## Numbers
 
 <p align="center">
-  <img height="165" alt="Statistics" src="https://github-readme-stats.vercel.app/api?username=Dschonas04&show_icons=true&hide_border=true&hide_title=true&include_all_commits=true&count_private=true&icon_color=c2410c&title_color=c2410c">
-  <img height="165" alt="Languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Dschonas04&layout=compact&hide_border=true&langs_count=8&title_color=c2410c&hide=jinja,go%20template">
+  <img alt="Statistics" src="karten/statistik-hell.svg#gh-light-mode-only">
+  <img alt="Languages" src="karten/sprachen-hell.svg#gh-light-mode-only">
+  <img alt="Statistics" src="karten/statistik-dunkel.svg#gh-dark-mode-only">
+  <img alt="Languages" src="karten/sprachen-dunkel.svg#gh-dark-mode-only">
 </p>
 
 <p align="center">
@@ -125,11 +127,12 @@ The material is German — the products are the English part of this profile.
 
 <p align="center">
   <sub>
-    The cards come from
-    <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a>
-    and <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a>,
-    both third-party services. Most of my work sits in private repositories, so
-    the public count says less than it looks like.
+    The two cards are drawn by
+    <a href="karten.py">karten.py</a> in this repository and redrawn nightly by
+    a workflow — the usual service for this answers 503 often enough that a
+    broken image would be the normal state. Private contributions are counted
+    in; most of my work sits in private repositories, so the public numbers say
+    less than they look like. The streak card is third-party.
   </sub>
 </p>
 
