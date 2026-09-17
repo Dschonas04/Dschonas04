@@ -47,7 +47,9 @@ jobs:
             exit 0
           fi
           git config user.name Dschonas04
-          git config user.email jonasgroll302@gmail.com
+          # Die noreply-Adresse von GitHub, damit keine echte Adresse in der
+          # oeffentlichen Geschichte steht.
+          git config user.email 200050623+Dschonas04@users.noreply.github.com
           git add karten
           git commit -m "Karten neu gezeichnet"
           git push
