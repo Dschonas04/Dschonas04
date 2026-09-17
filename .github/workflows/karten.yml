@@ -1,0 +1,53 @@
+# Zeichnet die Karten im Profil neu.
+#
+# github-readme-stats waere der uebliche Weg, aber der oeffentliche Dienst dort
+# antwortet oft mit 503 -- und dann steht im Profil ein kaputtes Bild. Hier
+# fragt der Arbeitsablauf selbst ab und legt zwei SVG ins Repository; ausfallen
+# kann damit nur GitHub selbst, und dann sieht das Profil ohnehin niemand.
+name: Karten zeichnen
+
+on:
+  schedule:
+    # Einmal am Tag, nachts, in einer Minute die nicht auf null endet: zur
+    # vollen Stunde stehen die geteilten Laeufer Schlange.
+    - cron: '17 3 * * *'
+  push:
+    branches: [main]
+    paths: ['karten.py', '.github/workflows/karten.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: karten
+  cancel-in-progress: true
+
+jobs:
+  zeichnen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Karten erzeugen
+        env:
+          # Das eigene Kurzzeit-Token reicht: es darf die eigenen privaten
+          # Beitraege zaehlen, und es laeuft nach dem Lauf ab.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BENUTZER: ${{ github.repository_owner }}
+        run: |
+          mkdir -p karten
+          python3 karten.py
+
+      - name: Einchecken, wenn sich etwas geaendert hat
+        run: |
+          if git diff --quiet -- karten; then
+            echo "Karten unveraendert"
+            exit 0
+          fi
+          git config user.name Dschonas04
+          git config user.email jonasgroll302@gmail.com
+          git add karten
+          git commit -m "Karten neu gezeichnet"
+          git push
