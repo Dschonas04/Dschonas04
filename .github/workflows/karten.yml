@@ -1,6 +1,6 @@
 # Zeichnet die Karten im Profil neu.
 #
-# github-readme-stats waere der uebliche Weg, aber der oeffentliche Dienst dort
+# github-readme-stats wäre der übliche Weg, aber der öffentliche Dienst dort
 # antwortet oft mit 503 -- und dann steht im Profil ein kaputtes Bild. Hier
 # fragt der Arbeitsablauf selbst ab und legt zwei SVG ins Repository; ausfallen
 # kann damit nur GitHub selbst, und dann sieht das Profil ohnehin niemand.
@@ -9,7 +9,7 @@ name: Karten zeichnen
 on:
   schedule:
     # Einmal am Tag, nachts, in einer Minute die nicht auf null endet: zur
-    # vollen Stunde stehen die geteilten Laeufer Schlange.
+    # vollen Stunde stehen die geteilten Läufer Schlange.
     - cron: '17 3 * * *'
   push:
     branches: [main]
@@ -28,27 +28,27 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Karten erzeugen
         env:
           # Das eigene Kurzzeit-Token reicht: es darf die eigenen privaten
-          # Beitraege zaehlen, und es laeuft nach dem Lauf ab.
+          # Beiträge zählen, und es läuft nach dem Lauf ab.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BENUTZER: ${{ github.repository_owner }}
         run: |
           mkdir -p karten
           python3 karten.py
 
-      - name: Einchecken, wenn sich etwas geaendert hat
+      - name: Einchecken, wenn sich etwas geändert hat
         run: |
           if git diff --quiet -- karten; then
-            echo "Karten unveraendert"
+            echo "Karten unverändert"
             exit 0
           fi
           git config user.name Dschonas04
           # Die noreply-Adresse von GitHub, damit keine echte Adresse in der
-          # oeffentlichen Geschichte steht.
+          # öffentlichen Geschichte steht.
           git config user.email 200050623+Dschonas04@users.noreply.github.com
           git add karten
           git commit -m "Karten neu gezeichnet"

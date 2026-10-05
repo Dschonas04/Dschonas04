@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Zeichnet die beiden Karten fuer das Profil-README.
+"""Zeichnet die beiden Karten für das Profil-README.
 
-Warum selbst und nicht github-readme-stats: der oeffentliche Dienst dort
-antwortet regelmaessig mit 503, und dann steht im Profil ein kaputtes Bild.
-Hier laeuft die Abfrage im eigenen Arbeitsablauf, das Ergebnis liegt als SVG im
-Repository, und es kann nichts ausfallen, was nicht mir gehoert.
+Warum selbst und nicht github-readme-stats: der öffentliche Dienst dort
+antwortet regelmäßig mit 503, und dann steht im Profil ein kaputtes Bild.
+Hier läuft die Abfrage im eigenen Arbeitsablauf, das Ergebnis liegt als SVG im
+Repository, und es kann nichts ausfallen, was nicht mir gehört.
 
 Jede Karte entsteht zweimal, hell und dunkel: ein SVG im <img> bekommt die
 Themenumschaltung von GitHub nicht mit, und eine Fassung, die auf beiden
-Untergruenden gerade noch geht, ist auf keinem gut. Das README waehlt per
+Untergründen gerade noch geht, ist auf keinem gut. Das README wählt per
 #gh-light-mode-only bzw. #gh-dark-mode-only aus.
 """
 import json

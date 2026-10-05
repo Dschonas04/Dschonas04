@@ -45,7 +45,7 @@ privacy page — not demos.
       <h3><a href="https://github.com/Dschonas04/Blankr">Blankr</a></h3>
       <p>
         <img alt="Stars" src="https://img.shields.io/github/stars/Dschonas04/Blankr?style=flat-square&color=2383e2">
-        <img alt="Release" src="https://img.shields.io/github/v/release/Dschonas04/Blankr?style=flat-square&color=2383e2">
+        <img alt="Version" src="https://img.shields.io/github/v/tag/Dschonas04/Blankr?style=flat-square&color=2383e2&label=version">
       </p>
       <p>A collaborative whiteboard. Live cursors over WebSocket, boards that
       persist, and two share links per board — one to draw, one to watch.</p>
@@ -55,10 +55,11 @@ privacy page — not demos.
       <h3><a href="https://github.com/Dschonas04/Planr">Planr</a></h3>
       <p>
         <img alt="Stars" src="https://img.shields.io/github/stars/Dschonas04/Planr?style=flat-square&color=b45309">
-        <img alt="Release" src="https://img.shields.io/github/v/release/Dschonas04/Planr?style=flat-square&color=b45309">
+        <img alt="Version" src="https://img.shields.io/github/v/tag/Dschonas04/Planr?style=flat-square&color=b45309&label=version">
       </p>
-      <p>A floor plan editor to scale: walls, doors, windows, furniture, room
-      areas, a 3D view, and export as DXF, SVG, PNG or a shareable file.</p>
+      <p>Floor plans and whole houses to scale: storeys, wall build-ups with
+      U-values, stairs, roofs, dimensions, living area after WoFlV, a 3D view,
+      and export as DXF, SVG, PNG or PDF. Also as a Mac app.</p>
       <p><sub>Go · React · three.js · server-side export</sub></p>
     </td>
   </tr>
@@ -89,14 +90,15 @@ from one control node, backed up nightly to a Proxmox Backup Server.
 | Identity | Keycloak as the single sign-on for every web interface |
 | Observability | Prometheus, Grafana, Loki, Alertmanager — and Wazuh for the security side |
 | Automation | Ansible, 33 roles, plus self-hosted GitHub runners that build and roll out |
-| Backup | Proxmox Backup Server, nightly, plus database dumps to a NAS |
+| Backup | Proxmox Backup Server, nightly, plus local database dumps |
 
 ---
 
 ## Courses I wrote while learning
 
 Each one is a repository you clone and work through in levels, with tests that
-tell you whether the level is done. No slides, no video.
+tell you whether the level is done. No slides, no video. In German, texts under
+CC BY-SA 4.0, code under MIT; CI checks every model solution on each change.
 
 | Course | Levels | How it is checked |
 | --- | --- | --- |
@@ -106,9 +108,19 @@ tell you whether the level is done. No slides, no video.
 | [Ansible](https://github.com/Dschonas04/Ansible-Kurs) | 4 | Playbooks against your own machine |
 | [Terraform / OpenTofu](https://github.com/Dschonas04/Terraform-Kurs) | 4 | Local providers only, no cloud account |
 | [Shell](https://github.com/Dschonas04/Shell-Kurs) | 5 | A probe script per level |
-| [PowerShell](https://github.com/Dschonas04/Powershell-Kurs) | 9 | Fill-in tasks, starting from zero |
+| [PowerShell](https://github.com/Dschonas04/Powershell-Kurs) | 8 | Runs your script with input and parameters, starting from zero |
 
 
+---
+
+## Smaller things
+
+| Project | What it is |
+| --- | --- |
+| [Quicksend](https://github.com/Dschonas04/quicksend) | Send files to another computer on the same network: no cloud, resume by byte, pinned TLS. One binary for Windows, macOS and Linux. |
+| [TNT Arsenal](https://github.com/Dschonas04/tnt-arsenal) | Sixty kinds of TNT for Minecraft 26.2 on Fabric, each with hand-drawn textures, from drill and bridge to a nuke with fallout. |
+| [Loot Scaler](https://github.com/Dschonas04/loot-scaler) | A Fabric mod that makes ores and mobs give less, so a world lasts longer, without ever turning one drop into none. |
+| [Travelhub](https://github.com/Dschonas04/Travelhub) | Trip planning for a group, as a SwiftUI app and a Flutter app; the [web version](https://dschonas04.github.io/Travelhub/) runs in the browser. |
 
 ---
 
