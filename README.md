@@ -108,7 +108,7 @@ tell you whether the level is done. No slides, no video.
 | [Shell](https://github.com/Dschonas04/Shell-Kurs) | 5 | A probe script per level |
 | [PowerShell](https://github.com/Dschonas04/Powershell-Kurs) | 9 | Fill-in tasks, starting from zero |
 
-The material is German — the products are the English part of this profile.
+
 
 ---
 
