@@ -67,33 +67,6 @@ privacy page — not demos.
 
 ---
 
-## The homelab
-
-Everything above runs at home, on hardware I can touch. Managed by Ansible
-from one control node, backed up nightly to a Proxmox Backup Server.
-
-<p>
-  <img alt="Proxmox" src="https://img.shields.io/badge/Hypervisors-2%20%C3%97%20Proxmox-E57000?style=flat-square">
-  <img alt="Guests" src="https://img.shields.io/badge/Guests-9%20VMs%20%2B%20LXC-informational?style=flat-square">
-  <img alt="Containers" src="https://img.shields.io/badge/Containers-40%2B-2496ED?style=flat-square">
-  <img alt="k3s" src="https://img.shields.io/badge/Kubernetes-k3s-FFC61C?style=flat-square">
-  <img alt="Ansible" src="https://img.shields.io/badge/Roles-33-EE0000?style=flat-square">
-  <img alt="Monitoring" src="https://img.shields.io/badge/Monitoring-Prometheus%20%2B%20Grafana-E6522C?style=flat-square">
-  <img alt="SIEM" src="https://img.shields.io/badge/SIEM-Wazuh-005C99?style=flat-square">
-  <img alt="SSO" src="https://img.shields.io/badge/SSO-Keycloak-4D4D4D?style=flat-square">
-</p>
-
-| Layer | What runs there |
-| --- | --- |
-| Virtualisation | Two Proxmox hosts, nine guests, GPU passthrough for a local LLM |
-| Kubernetes | k3s, carrying the public web services |
-| Identity | Keycloak as the single sign-on for every web interface |
-| Observability | Prometheus, Grafana, Loki, Alertmanager — and Wazuh for the security side |
-| Automation | Ansible, 33 roles, plus self-hosted GitHub runners that build and roll out |
-| Backup | Proxmox Backup Server, nightly, plus local database dumps |
-
----
-
 ## Courses I wrote while learning
 
 Each one is a repository you clone and work through in levels, with tests that
