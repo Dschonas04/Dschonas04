@@ -1,8 +1,8 @@
 <h1 align="center">Dschonas04</h1>
 
 <p align="center">
-  I build self-hosted tools, and the homelab they run in.<br>
-  Go on the inside, React on the outside, PostgreSQL underneath.
+  Software developer building self-hosted products for teams.<br>
+  Go backends, React and TypeScript frontends, PostgreSQL, shipped as containers.
 </p>
 
 <p align="center">
@@ -11,18 +11,17 @@
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white">
   <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white">
   <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white">
-  <img alt="Kubernetes" src="https://img.shields.io/badge/k3s-FFC61C?style=flat-square&logo=k3s&logoColor=black">
-  <img alt="Ansible" src="https://img.shields.io/badge/Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white">
-  <img alt="Proxmox" src="https://img.shields.io/badge/Proxmox-E57000?style=flat-square&logo=proxmox&logoColor=white">
+  <img alt="Kubernetes" src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white">
   <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white">
+  <img alt="Flutter" src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white">
 </p>
 
 ---
 
 ## Products
 
-Three finished things, each self-hosted, each with accounts, sharing and a
-privacy page — not demos.
+Three finished, self-hosted products, each with user accounts,
+sharing, permissions and a privacy policy.
 
 <table>
   <tr>
@@ -48,7 +47,7 @@ privacy page — not demos.
         <img alt="Version" src="https://img.shields.io/github/v/tag/Dschonas04/Blankr?style=flat-square&color=2383e2&label=version">
       </p>
       <p>A collaborative whiteboard. Live cursors over WebSocket, boards that
-      persist, and two share links per board — one to draw, one to watch.</p>
+      persist, and two share links per board: one to draw, one to watch.</p>
       <p><sub>Go · React · CRDT-style last-write-wins merge</sub></p>
     </td>
     <td width="33%" valign="top">
@@ -67,11 +66,11 @@ privacy page — not demos.
 
 ---
 
-## Courses I wrote while learning
+## Courses
 
-Each one is a repository you clone and work through in levels, with tests that
-tell you whether the level is done. No slides, no video. In German, texts under
-CC BY-SA 4.0, code under MIT; CI checks every model solution on each change.
+Hands-on courses in German. Each is a repository you work through level by
+level, with automated tests that confirm when a level is complete. Texts under
+CC BY-SA 4.0, code under MIT; CI verifies every model solution on each change.
 
 | Course | Levels | How it is checked |
 | --- | --- | --- |
@@ -86,7 +85,7 @@ CC BY-SA 4.0, code under MIT; CI checks every model solution on each change.
 
 ---
 
-## Smaller things
+## Other projects
 
 | Project | What it is |
 | --- | --- |
@@ -108,12 +107,9 @@ CC BY-SA 4.0, code under MIT; CI checks every model solution on each change.
 
 <p align="center">
   <sub>
-    Both cards are drawn by <a href="karten.py">karten.py</a> in this
-    repository and redrawn nightly by a workflow — the usual service for this
-    answers 503 often enough that a broken image would be the normal state.
-    Private contributions are counted in the commit figure; the repository
-    count and the languages are the public ones. Most of my work sits in
-    private repositories, so these numbers say less than they look like.
+    Generated nightly by <a href="karten.py">karten.py</a> in this repository.
+    The commit count includes private contributions; repositories and
+    languages cover public work only.
   </sub>
 </p>
 
@@ -121,8 +117,9 @@ CC BY-SA 4.0, code under MIT; CI checks every model solution on each change.
 
 <p align="center">
   <sub>
-    Licence note: Nexora, Blankr and Planr are under the Business Source
-    License 1.1 — run them yourself, commercially, for free; a handful of
-    extras need a key, and each turns into Apache 2.0 on its date.
+    Licensing: Nexora, Blankr and Planr are released under the Business Source
+    License 1.1. Self-hosting, including commercial use, is free; a few premium
+    features require a licence key. Each release converts to Apache 2.0 on its
+    change date.
   </sub>
 </p>
