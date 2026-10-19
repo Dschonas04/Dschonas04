@@ -66,21 +66,23 @@ sharing, permissions and a privacy policy.
 
 ---
 
-## Courses
+## Workshops
 
-Hands-on courses in German. Each is a repository you work through level by
-level, with automated tests that confirm when a level is complete. Texts under
-CC BY-SA 4.0, code under MIT; CI verifies every model solution on each change.
+Hands-on workshops in German, all in one repository:
+[workshop](https://github.com/Dschonas04/workshop). Each workshop is a folder
+you work through level by level, with automated tests that confirm when a
+level is complete. Texts under CC BY-SA 4.0, code under MIT; CI verifies every
+model solution on each change.
 
-| Course | Levels | How it is checked |
+| Workshop | Levels | How it is checked |
 | --- | --- | --- |
-| [Go](https://github.com/Dschonas04/Go-Kurs) | 4 | `go test -race` |
-| [React](https://github.com/Dschonas04/React-Kurs) | 4 | Vitest and the TypeScript compiler |
-| [Container](https://github.com/Dschonas04/Container-Kurs) | 5 | Docker, Compose and Podman, a probe per level |
-| [Ansible](https://github.com/Dschonas04/Ansible-Kurs) | 4 | Playbooks against your own machine |
-| [Terraform / OpenTofu](https://github.com/Dschonas04/Terraform-Kurs) | 4 | Local providers only, no cloud account |
-| [Shell](https://github.com/Dschonas04/Shell-Kurs) | 5 | A probe script per level |
-| [PowerShell](https://github.com/Dschonas04/Powershell-Kurs) | 8 | Runs your script with input and parameters, starting from zero |
+| [Go](https://github.com/Dschonas04/workshop/tree/main/go) | 4 | `go test -race` |
+| [React](https://github.com/Dschonas04/workshop/tree/main/react) | 4 | Vitest and the TypeScript compiler |
+| [Container](https://github.com/Dschonas04/workshop/tree/main/container) | 5 | Docker, Compose and Podman, a probe per level |
+| [Ansible](https://github.com/Dschonas04/workshop/tree/main/ansible) | 4 | Playbooks against your own machine |
+| [Terraform / OpenTofu](https://github.com/Dschonas04/workshop/tree/main/terraform) | 4 | Local providers only, no cloud account |
+| [Shell](https://github.com/Dschonas04/workshop/tree/main/shell) | 5 | A probe script per level |
+| [PowerShell](https://github.com/Dschonas04/workshop/tree/main/powershell) | 8 | Runs your script with input and parameters, starting from zero |
 
 
 ---
@@ -89,7 +91,7 @@ CC BY-SA 4.0, code under MIT; CI verifies every model solution on each change.
 
 | Project | What it is |
 | --- | --- |
-| [Quicksend](https://github.com/Dschonas04/quicksend) | Send files to another computer on the same network: no cloud, resume by byte, pinned TLS. One binary for Windows, macOS and Linux. |
+| [Sendr](https://github.com/Dschonas04/sendr) | Send files to another computer on the same network: no cloud, resume by byte, pinned TLS. One binary for Windows, macOS and Linux. |
 | [TNT Arsenal](https://github.com/Dschonas04/tnt-arsenal) | Sixty kinds of TNT for Minecraft 26.2 on Fabric, each with hand-drawn textures, from drill and bridge to a nuke with fallout. |
 | [Loot Scaler](https://github.com/Dschonas04/loot-scaler) | A Fabric mod that makes ores and mobs give less, so a world lasts longer, without ever turning one drop into none. |
 | [Travelhub](https://github.com/Dschonas04/Travelhub) | Trip planning for a group, as a SwiftUI app and a Flutter app; the [web version](https://dschonas04.github.io/Travelhub/) runs in the browser. |
