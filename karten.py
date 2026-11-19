@@ -96,7 +96,8 @@ def statistik_karte(daten, pfad, t):
         ("Stars earned", sum(r["stargazerCount"] for r in repos)),
     ]
     akzent, schrift, stark = t["akzent"], t["schrift"], t["stark"]
-    hoehe = 46 + len(zeilen) * 26 + 14
+    # Gleich hoch wie die Nachbarkarte, damit die Reihe bündig ist.
+    hoehe = 46 + 6 * 26 + 14
     teile = [kopf(420, hoehe, "GitHub statistics", t)]
     teile.append(f'<text x="22" y="30" font-size="14" font-weight="600" fill="{akzent}">Statistics</text>')
     y = 58
@@ -199,7 +200,8 @@ def serien_karte(daten, pfad, t):
         ("Busiest on", namen[je.index(max(je))] if any(je) else "-"),
     ]
     akzent, schrift, stark = t["akzent"], t["schrift"], t["stark"]
-    hoehe = 46 + len(zeilen) * 26 + 14
+    # Gleich hoch wie die Nachbarkarte, damit die Reihe bündig ist.
+    hoehe = 46 + 6 * 26 + 14
     teile = [kopf(420, hoehe, "Streaks", t)]
     teile.append(f'<text x="22" y="30" font-size="14" font-weight="600" fill="{akzent}">Streaks</text>')
     # Eine kleine Flamme, die bei laufender Serie leuchtet.
