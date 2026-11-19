@@ -40,6 +40,15 @@ jobs:
           mkdir -p karten
           python3 karten.py
 
+      # Die Schlange frisst die Kacheln des Commit-Kalenders, hell und dunkel.
+      - name: Schlange zeichnen
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            karten/schlange-hell.svg?palette=github-light&color_snake=#c2410c
+            karten/schlange-dunkel.svg?palette=github-dark&color_snake=#f97316
+
       - name: Einchecken, wenn sich etwas geändert hat
         run: |
           if git diff --quiet -- karten; then
