@@ -125,11 +125,6 @@ model solution on each change.
 ## Numbers
 
 <p align="center">
-  <img alt="Commits as a skyline" src="karten/skyline-hell.svg#gh-light-mode-only">
-  <img alt="Commits as a skyline" src="karten/skyline-dunkel.svg#gh-dark-mode-only">
-</p>
-
-<p align="center">
   <img alt="Statistics" src="karten/statistik-hell.svg#gh-light-mode-only">
   <img alt="Streaks" src="karten/serien-hell.svg#gh-light-mode-only">
   <img alt="Statistics" src="karten/statistik-dunkel.svg#gh-dark-mode-only">
@@ -149,7 +144,7 @@ model solution on each change.
 <p align="center">
   <sub>
     Generated nightly by <a href="karten.py">karten.py</a> in this repository.
-    Commits, streaks and the skyline include private contributions;
+    Commits and streaks include private contributions;
     repositories and languages cover public work only.
   </sub>
 </p>
