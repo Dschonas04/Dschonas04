@@ -1,8 +1,8 @@
 <h1 align="center">Dschonas04</h1>
 
 <p align="center">
-  Selbst gehostete Software aus dem eigenen Homelab: Go im Backend, React im Browser,<br>
-  Kotlin auf Android und Java für Minecraft-Mods. Dazu Fotografie.
+  Self-hosted software from my own homelab: Go on the backend, React in the browser,<br>
+  Kotlin on Android and Java for Minecraft mods. Plus photography.
 </p>
 
 <p align="center">
@@ -11,106 +11,118 @@
   <a href="https://dschonas04.github.io/Nexora/">Nexora</a>
 </p>
 
----
-
-## Über mich
-
-Ich baue Anwendungen, die auf dem eigenen Server laufen statt in fremden Clouds:
-ein Go-Programm, eine Datenbank, ein Container, fertig. Alles davon läuft zuerst
-in meinem Homelab (Proxmox, Docker, Kubernetes mit k3s, Ansible) und kommt erst
-hierher, wenn es sich im Alltag bewährt hat. Nebenbei entstehen Mods für unseren
-Minecraft-Server und Workshops für alle, die selbst einsteigen wollen. Meine Fotos
-zeige ich unter [photo.jonasgroll.de](https://photo.jonasgroll.de).
+<p align="center">
+  <img alt="A snake eating the contribution graph" src="karten/schlange-hell.svg#gh-light-mode-only">
+  <img alt="A snake eating the contribution graph" src="karten/schlange-dunkel.svg#gh-dark-mode-only">
+</p>
 
 ---
 
-## Apps für den Alltag
+## About me
 
-| Projekt | Wofür | Technik | Stand |
+I build applications that run on your own server instead of someone else's cloud:
+one Go binary, one database, one container, done. Everything runs in my homelab
+first (Proxmox, Docker, Kubernetes with k3s, Ansible) and only lands here once it
+has proven itself in daily use. Along the way I write mods for our Minecraft
+server and workshops for anyone who wants to get started. My photos are at
+[photo.jonasgroll.de](https://photo.jonasgroll.de).
+
+---
+
+## Everyday apps
+
+| Project | What it does | Stack | Status |
 | --- | --- | --- | --- |
-| [Nexora](https://github.com/Dschonas04/Nexora) | Wiki mit Backlinks, Wissensgraph, Vorlagen und Mermaid-Diagrammen; [Live-Demo](https://nexora.jonasgroll.de) | Go, React, PostgreSQL | [v3.7.1](https://github.com/Dschonas04/Nexora/releases/latest) |
-| [Planr](https://github.com/Dschonas04/planr) | Grundrisse und ganze Häuser maßstabsgetreu planen, mit 3D-Ansicht und Export als DXF, SVG und PNG | Go, React, three.js | [v2.1.0](https://github.com/Dschonas04/planr/releases/latest) |
-| [Blankr](https://github.com/Dschonas04/blankr) | Gemeinsames Whiteboard mit Live-Cursorn und zwei Freigabelinks: zeichnen oder zusehen | Go, React, WebSocket | [v1.1.0](https://github.com/Dschonas04/blankr/releases/latest) |
-| [Foodr](https://github.com/Dschonas04/foodr) | Essensplaner: Wochenplan per lokalem Sprachmodell, Einkaufsliste, Nährwerte aus BLS 4.0 | Go, PostgreSQL, Ollama | [v1.0.0](https://github.com/Dschonas04/foodr/releases/latest) |
-| [Captr](https://github.com/Dschonas04/captr) | Fotos entwickeln im Browser, ähnlich wie Lightroom: RAW, JPEG, HEIC, zerstörungsfrei | Go, React, WebGL2 | [v1.0.0](https://github.com/Dschonas04/captr/releases/latest) |
-| [Photr](https://github.com/Dschonas04/photr) | Sammlungen mit Bildern anlegen, gestalten und teilen | Go, React, PostgreSQL | [v1.0.0](https://github.com/Dschonas04/photr/releases/latest) |
-| [Meetr](https://github.com/Dschonas04/meetr) | Videokonferenzen im Browser auf dem eigenen Server, Gäste ohne Konto | Go, WebRTC | in Arbeit |
+| [Nexora](https://github.com/Dschonas04/Nexora) | Wiki with backlinks, knowledge graph, templates and Mermaid diagrams; [live demo](https://nexora.jonasgroll.de) | Go, React, PostgreSQL | [v3.7.1](https://github.com/Dschonas04/Nexora/releases/latest) |
+| [Planr](https://github.com/Dschonas04/planr) | Plan floor plans and whole houses to scale, with a 3D view and DXF, SVG and PNG export | Go, React, three.js | [v2.1.0](https://github.com/Dschonas04/planr/releases/latest) |
+| [Blankr](https://github.com/Dschonas04/blankr) | Shared whiteboard with live cursors and two share links: draw or watch | Go, React, WebSocket | [v1.1.0](https://github.com/Dschonas04/blankr/releases/latest) |
+| [Foodr](https://github.com/Dschonas04/foodr) | Meal planner: weekly plan from a local language model, shopping list, nutrition data from BLS 4.0 | Go, PostgreSQL, Ollama | [v1.0.0](https://github.com/Dschonas04/foodr/releases/latest) |
+| [Captr](https://github.com/Dschonas04/captr) | Develop photos in the browser, similar to Lightroom: RAW, JPEG, HEIC, non-destructive | Go, React, WebGL2 | [v1.0.0](https://github.com/Dschonas04/captr/releases/latest) |
+| [Photr](https://github.com/Dschonas04/photr) | Create, design and share photo collections | Go, React, PostgreSQL | [v1.0.0](https://github.com/Dschonas04/photr/releases/latest) |
+| [Meetr](https://github.com/Dschonas04/meetr) | Video calls in the browser on your own server, guests need no account | Go, WebRTC | in progress |
 
-## Werkzeuge
+## Tools
 
-**Netz und Geräte**
+**Network and devices**
 
-| Projekt | Wofür | Technik | Stand |
+| Project | What it does | Stack | Status |
 | --- | --- | --- | --- |
-| [Bondr](https://github.com/Dschonas04/bondr) | Alle Internetzugänge eines Rechners gleichzeitig nutzen: Kabel, WLAN, Handy per USB | Go; Windows, macOS, Linux | [v3.2.0](https://github.com/Dschonas04/bondr/releases/latest) |
-| [Sendr](https://github.com/Dschonas04/sendr) | Dateien im lokalen Netz senden, ohne Cloud, mit TLS und Fortsetzen nach Abbruch | Go; Windows, macOS, Linux | [v1.1.1](https://github.com/Dschonas04/sendr/releases/latest) |
-| [Spotr](https://github.com/Dschonas04/spotr) | Android-Handy als zuverlässiger Hotspot: Dauerbetrieb, Zeitplan, zu Hause aus | Kotlin, Android | in Arbeit |
+| [Bondr](https://github.com/Dschonas04/bondr) | Use every internet connection at once: Ethernet, Wi-Fi, mobile data; per-connection data usage | Go; Windows, macOS, Linux, Android | [v3.3.1](https://github.com/Dschonas04/bondr/releases/latest) |
+| [Sendr](https://github.com/Dschonas04/sendr) | Send files across the local network, no cloud, with TLS and resume after interruptions | Go; Windows, macOS, Linux | [v1.1.1](https://github.com/Dschonas04/sendr/releases/latest) |
+| [Spotr](https://github.com/Dschonas04/spotr) | Turn an Android phone into a reliable hotspot: always on, schedules, off when at home | Kotlin, Android | in progress |
 
-**Server und Teams**
+**Servers and teams**
 
-| Projekt | Wofür | Technik | Stand |
+| Project | What it does | Stack | Status |
 | --- | --- | --- | --- |
-| [Boardr](https://github.com/Dschonas04/boardr) | Startseite fürs Homelab: Dienste als Kacheln mit Status und Widgets | Go | in Arbeit |
-| [Trailr](https://github.com/Dschonas04/trailr) | Protokolliert, wer was auf Linux-Systemen tut, mit Hash-Kette gegen Manipulation | Go | in Arbeit |
-| [Forgr](https://github.com/Dschonas04/forgr) | Eigenes Git-Hosting mit Merge-Requests, Issues und CI-Status | Go | in Arbeit |
-| [Ticketr](https://github.com/Dschonas04/ticketr) | Ticketsystem mit E-Mail-Eingang, Warteschlangen und Fristen | Go, PostgreSQL | in Arbeit |
-| [Pagr](https://github.com/Dschonas04/pagr) | Content-Management für kleine Websites: schreiben, planen, veröffentlichen | Go | in Arbeit |
+| [Boardr](https://github.com/Dschonas04/boardr) | Homelab start page: services as tiles with status and widgets | Go | in progress |
+| [Trailr](https://github.com/Dschonas04/trailr) | Audit log of who does what on Linux systems, with a hash chain against tampering | Go | in progress |
+| [Forgr](https://github.com/Dschonas04/forgr) | Self-hosted Git with merge requests, issues and CI status | Go | in progress |
+| [Ticketr](https://github.com/Dschonas04/ticketr) | Ticket system with email intake, queues and deadlines | Go, PostgreSQL | in progress |
+| [Pagr](https://github.com/Dschonas04/pagr) | Content management for small websites: write, schedule, publish | Go | in progress |
 
 ## Minecraft
 
-Mods für Minecraft Java mit Fabric, entstanden für unseren eigenen Server.
+Mods for Minecraft Java on Fabric, made for our own server.
 
-| Projekt | Wofür | Stand |
+| Project | What it does | Status |
 | --- | --- | --- |
-| [TNT Arsenal](https://github.com/Dschonas04/TNT-Arsenal) | 64 Arten TNT mit eigenen Texturen, vom Bohrer bis zur Atombombe | [v1.8.1](https://github.com/Dschonas04/TNT-Arsenal/releases/latest) |
-| [Fishr](https://github.com/Dschonas04/fishr) | Angeln mit echtem Drill, 64 Fischarten, Köder und Bossfische | [v1.0.0](https://github.com/Dschonas04/fishr/releases/latest) |
-| [Managr](https://github.com/Dschonas04/managr) | Server-Mod für Beute, Spawnschutz und Verwaltung, dazu Datenpakete und Skripte | [v3.1.0](https://github.com/Dschonas04/managr/releases/latest) |
+| [TNT Arsenal](https://github.com/Dschonas04/TNT-Arsenal) | 64 kinds of TNT with their own textures, from drill charges to a nuke | [v1.8.1](https://github.com/Dschonas04/TNT-Arsenal/releases/latest) |
+| [Fishr](https://github.com/Dschonas04/fishr) | Fishing with a real fight, 64 fish species, bait and boss fish | [v1.0.0](https://github.com/Dschonas04/fishr/releases/latest) |
+| [Managr](https://github.com/Dschonas04/managr) | Server mod for loot, spawn protection and administration, plus data packs and scripts | [v3.1.0](https://github.com/Dschonas04/managr/releases/latest) |
 
-## Lernen: Workshops
+## Learning: workshops
 
-Workshops zum Selbstlernen auf Deutsch, alle im Repository
-[workshop](https://github.com/Dschonas04/workshop). Jeder besteht aus Leveln mit
-Theorie, Aufgabe und einem Prüfer, der sofort sagt, ob die Lösung stimmt.
+Self-paced workshops (in German), all in the
+[workshop](https://github.com/Dschonas04/workshop) repository. Each one is made of
+levels with theory, a task and a checker that tells you right away whether your
+solution works.
 
-| Workshop | Inhalt |
+| Workshop | Contents |
 | --- | --- |
-| [Go](https://github.com/Dschonas04/workshop/tree/main/go) | vier Level, geprüft mit `go test -race` |
-| [React](https://github.com/Dschonas04/workshop/tree/main/react) | vier Level, geprüft mit Vitest und TypeScript |
-| [Container](https://github.com/Dschonas04/workshop/tree/main/container) | Docker, Compose und Podman in fünf Leveln |
-| [Ansible](https://github.com/Dschonas04/workshop/tree/main/ansible) | vier Level gegen die eigene Maschine |
-| [Terraform](https://github.com/Dschonas04/workshop/tree/main/terraform) | Terraform und OpenTofu in vier Leveln, ohne Cloud-Konto |
-| [Shell](https://github.com/Dschonas04/workshop/tree/main/shell) | Bash Schritt für Schritt in fünf Leveln |
-| [PowerShell](https://github.com/Dschonas04/workshop/tree/main/powershell) | PowerShell von null in neun Leveln |
+| [Go](https://github.com/Dschonas04/workshop/tree/main/go) | four levels, checked with `go test -race` |
+| [React](https://github.com/Dschonas04/workshop/tree/main/react) | four levels, checked with Vitest and TypeScript |
+| [Container](https://github.com/Dschonas04/workshop/tree/main/container) | Docker, Compose and Podman in five levels |
+| [Ansible](https://github.com/Dschonas04/workshop/tree/main/ansible) | four levels against your own machine |
+| [Terraform](https://github.com/Dschonas04/workshop/tree/main/terraform) | Terraform and OpenTofu in four levels, no cloud account needed |
+| [Shell](https://github.com/Dschonas04/workshop/tree/main/shell) | Bash step by step in five levels |
+| [PowerShell](https://github.com/Dschonas04/workshop/tree/main/powershell) | PowerShell from zero in nine levels |
 
 ---
 
-## Technik
+## Stack
 
-| Bereich | Womit ich arbeite |
+| Area | What I work with |
 | --- | --- |
-| Backend | Go, REST und WebSocket, PostgreSQL, SQLite |
+| Backend | Go, REST and WebSocket, PostgreSQL, SQLite |
 | Frontend | React, TypeScript, Vite, WebGL2, three.js |
-| Mobil und Desktop | Kotlin für Android, Desktop-Programme für Windows, macOS und Linux |
-| Minecraft | Java, Fabric, Mixin, Datenpakete |
-| Betrieb | Docker, Kubernetes (k3s), Ansible, Terraform und OpenTofu, GitHub Actions |
-| Homelab | Proxmox, Prometheus, Grafana, Pi-hole, Home Assistant, Ollama für lokale Sprachmodelle |
+| Mobile and desktop | Kotlin for Android, desktop apps for Windows, macOS and Linux |
+| Minecraft | Java, Fabric, Mixin, data packs |
+| Operations | Docker, Kubernetes (k3s), Ansible, Terraform and OpenTofu, GitHub Actions |
+| Homelab | Proxmox, Prometheus, Grafana, Pi-hole, Home Assistant, Ollama for local language models |
 
 ---
 
-## Zahlen
+## Numbers
 
 <p align="center">
-  <img alt="Statistik" src="karten/statistik-hell.svg#gh-light-mode-only">
-  <img alt="Sprachen" src="karten/sprachen-hell.svg#gh-light-mode-only">
-  <img alt="Statistik" src="karten/statistik-dunkel.svg#gh-dark-mode-only">
-  <img alt="Sprachen" src="karten/sprachen-dunkel.svg#gh-dark-mode-only">
+  <img alt="Statistics" src="karten/statistik-hell.svg#gh-light-mode-only">
+  <img alt="Languages" src="karten/sprachen-hell.svg#gh-light-mode-only">
+  <img alt="Statistics" src="karten/statistik-dunkel.svg#gh-dark-mode-only">
+  <img alt="Languages" src="karten/sprachen-dunkel.svg#gh-dark-mode-only">
+</p>
+
+<p align="center">
+  <img alt="Streaks" src="karten/serien-hell.svg#gh-light-mode-only">
+  <img alt="Streaks" src="karten/serien-dunkel.svg#gh-dark-mode-only">
 </p>
 
 <p align="center">
   <sub>
-    Jede Nacht von <a href="karten.py">karten.py</a> in diesem Repository neu
-    gezeichnet, ohne fremden Dienst. Die Commits zählen private Beiträge mit,
-    Repositories und Sprachen nur öffentliche.
+    Redrawn every night by <a href="karten.py">karten.py</a> and
+    <a href="https://github.com/Platane/snk">Platane/snk</a> in this repository,
+    no third-party service. Commits include private contributions; repositories
+    and languages count public ones only.
   </sub>
 </p>
 
@@ -118,8 +130,8 @@ Theorie, Aufgabe und einem Prüfer, der sofort sagt, ob die Lösung stimmt.
 
 <p align="center">
   <sub>
-    Lizenzen: Nexora ist Open Core unter AGPL 3.0. Blankr und Planr stehen unter der
-    Business Source License 1.1 und gehen später in Apache 2.0 über. Die übrigen
-    Projekte sind MIT oder Apache 2.0, die Workshop-Texte CC BY-SA 4.0.
+    Licenses: Nexora is open core under AGPL 3.0. Blankr and Planr use the
+    Business Source License 1.1 and later convert to Apache 2.0. The other
+    projects are MIT or Apache 2.0, the workshop texts CC BY-SA 4.0.
   </sub>
 </p>
