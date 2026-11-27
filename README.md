@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <img alt="A snake eating the contribution graph" src="karten/schlange-hell.svg#gh-light-mode-only">
-  <img alt="A snake eating the contribution graph" src="karten/schlange-dunkel.svg#gh-dark-mode-only">
+  <img alt="Terminal with a quote of the day" src="karten/terminal-hell.svg#gh-light-mode-only">
+  <img alt="Terminal with a quote of the day" src="karten/terminal-dunkel.svg#gh-dark-mode-only">
 </p>
 
 ---
@@ -26,6 +26,11 @@ first (Proxmox, Docker, Kubernetes with k3s, Ansible) and only lands here once i
 has proven itself in daily use. Along the way I write mods for our Minecraft
 server and workshops for anyone who wants to get started. My photos are at
 [photo.jonasgroll.de](https://photo.jonasgroll.de).
+
+<p align="center">
+  <img alt="Homelab rack with blinking lights" src="karten/schrank-hell.svg#gh-light-mode-only">
+  <img alt="Homelab rack with blinking lights" src="karten/schrank-dunkel.svg#gh-dark-mode-only">
+</p>
 
 ---
 
@@ -64,6 +69,11 @@ server and workshops for anyone who wants to get started. My photos are at
 ## Minecraft
 
 Mods for Minecraft Java on Fabric, made for our own server.
+
+<p align="center">
+  <img alt="A TNT block exploding" src="karten/tnt-hell.svg#gh-light-mode-only">
+  <img alt="A TNT block exploding" src="karten/tnt-dunkel.svg#gh-dark-mode-only">
+</p>
 
 | Project | What it does | Status |
 | --- | --- | --- |
@@ -118,10 +128,20 @@ solution works.
 </p>
 
 <p align="center">
+  <img alt="Commits as a skyline" src="karten/skyline-hell.svg#gh-light-mode-only">
+  <img alt="Commits as a skyline" src="karten/skyline-dunkel.svg#gh-dark-mode-only">
+</p>
+
+<p align="center">
+  <img alt="A snake eating the contribution graph" src="karten/schlange-hell.svg#gh-light-mode-only">
+  <img alt="A snake eating the contribution graph" src="karten/schlange-dunkel.svg#gh-dark-mode-only">
+</p>
+
+<p align="center">
   <sub>
     Redrawn every night by <a href="karten.py">karten.py</a> and
     <a href="https://github.com/Platane/snk">Platane/snk</a> in this repository,
-    no third-party service. Commits include private contributions; repositories
+    no third-party service. The quote in the terminal changes daily. Commits, streaks and the skyline include private contributions; repositories
     and languages count public ones only.
   </sub>
 </p>

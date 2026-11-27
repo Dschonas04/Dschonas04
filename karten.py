@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Zeichnet die Karten für das Profil-README: Statistik, Sprachen und Serien.
+"""Zeichnet die Karten für das Profil-README: Statistik, Sprachen, Serien,
+Skyline und ein paar Spielereien (Terminal, TNT, Server-Schrank).
 
 Warum selbst und nicht github-readme-stats: der öffentliche Dienst dort
 antwortet regelmäßig mit 503, und dann steht im Profil ein kaputtes Bild.
@@ -11,6 +12,7 @@ Themenumschaltung von GitHub nicht mit, und eine Fassung, die auf beiden
 Untergründen gerade noch geht, ist auf keinem gut. Das README wählt per
 #gh-light-mode-only bzw. #gh-dark-mode-only aus.
 """
+import datetime
 import json
 import os
 import urllib.request
@@ -169,6 +171,83 @@ def tage(daten):
             l.append((d["date"], d["contributionCount"], d["weekday"]))
     return l
 
+def skyline_karte(daten, pfad, t):
+    """Das letzte Jahr als Stadt: jede Woche eine Reihe, jeder Tag ein Turm.
+
+    Isometrisch gezeichnet, die Türme wachsen beim Laden nacheinander aus dem
+    Boden (CSS-Animation, die GitHub im Bild abspielt). Die Höhe folgt der
+    Wurzel der Anzahl: ein Tag mit 60 Commits soll nicht alles andere platt
+    drücken.
+    """
+    wochen = daten["contributionsCollection"]["contributionCalendar"]["weeks"]
+    hoechst = max((d["contributionCount"] for w in wochen for d in w["contributionDays"]), default=1) or 1
+    breite, hoehe = 860, 300
+    akzent = t["akzent"]
+    # Drei Töne je Turm: Dach hell, links mittel, rechts dunkel.
+    def toene(stufe):
+        if t is THEMEN["hell"]:
+            basis = [(253, 186, 116), (251, 146, 60), (234, 88, 12), (194, 65, 12)]
+        else:
+            basis = [(154, 52, 18), (194, 65, 12), (234, 88, 12), (251, 146, 60)]
+        r, g, b = basis[stufe]
+        f = lambda k: f"rgb({int(r * k)},{int(g * k)},{int(b * k)})"
+        return f(1.0), f(0.82), f(0.66)
+    leer = t["linie"]
+    teile = [kopf(breite, hoehe, "Contributions as a skyline", t)]
+    teile.append(
+        "<style>.t{transform-box:fill-box;transform-origin:bottom;animation:auf .9s cubic-bezier(.2,.8,.2,1) both}"
+        "@keyframes auf{from{transform:scaleY(0)}to{transform:scaleY(1)}}</style>"
+    )
+    teile.append(f'<text x="22" y="30" font-size="14" font-weight="600" fill="{akzent}">Commits, last 12 months</text>')
+    teile.append(f'<text x="22" y="48" font-size="11.5" fill="{t["schrift"]}">one tower per day, one row per week</text>')
+    # Wochen laufen nach rechts (leicht abfallend), Wochentage nach vorn.
+    W = (12.6, 1.6)
+    D = (4.2, 6.2)
+    ox, oy, hmax = 50, 120, 70.0
+    zuerst = []
+    for wi, w in enumerate(wochen):
+        for d in w["contributionDays"]:
+            zuerst.append((wi, d["weekday"], d["contributionCount"]))
+    # Hinten (Sonntag) vor vorn (Samstag), links vor rechts.
+    zuerst.sort(key=lambda x: (x[1], x[0]))
+    pt = lambda px, py: f"{px:.1f},{py:.1f}"
+    for wi, tag, n in zuerst:
+        x = ox + wi * W[0] + tag * D[0]
+        y = oy + wi * W[1] + tag * D[1]
+        w0, w1 = W[0] * 0.86, W[1] * 0.86
+        d0, d1 = D[0] * 0.86, D[1] * 0.86
+        h = 1.5 if n == 0 else 4 + hmax * (n / hoechst) ** 0.5
+        if n == 0:
+            dach = vorn = seite = leer
+        else:
+            stufe = min(3, int(4 * (n / hoechst) ** 0.5))
+            dach, vorn, seite = toene(stufe)
+        a0 = (x, y - h)
+        a1 = (x + w0, y + w1 - h)
+        a2 = (x + w0 + d0, y + w1 + d1 - h)
+        a3 = (x + d0, y + d1 - h)
+        oben = [pt(*a0), pt(*a1), pt(*a2), pt(*a3)]
+        front = [pt(*a3), pt(*a2), pt(a2[0], a2[1] + h), pt(a3[0], a3[1] + h)]
+        rechts = [pt(*a1), pt(*a2), pt(a2[0], a2[1] + h), pt(a1[0], a1[1] + h)]
+        verz = f' style="animation-delay:{wi * 22 + tag * 6}ms"' if n else ""
+        teile.append(
+            f'<g class="t"{verz}><polygon points="{" ".join(front)}" fill="{vorn}"/>'
+            f'<polygon points="{" ".join(rechts)}" fill="{seite}"/>'
+            f'<polygon points="{" ".join(oben)}" fill="{dach}"/></g>'
+        )
+    # Monatsnamen unter der vordersten Reihe.
+    monat = None
+    for wi, w in enumerate(wochen):
+        m = w["contributionDays"][0]["date"][5:7]
+        if m != monat:
+            monat = m
+            name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][int(m) - 1]
+            x = ox + wi * W[0] + 7 * D[0]
+            y = oy + wi * W[1] + 7 * D[1] + 16
+            teile.append(f'<text x="{x:.1f}" y="{y:.1f}" font-size="10" fill="{t["schrift"]}">{name}</text>')
+    teile.append("</svg>")
+    open(pfad, "w").write("".join(teile))
+
 
 def serien_karte(daten, pfad, t):
     import datetime
@@ -220,12 +299,194 @@ def serien_karte(daten, pfad, t):
     return zeilen
 
 
+# ---------------------------------------------------------------------------
+# Spielereien: Terminal, TNT, Server-Schrank. Alles reines SVG mit CSS-
+# Animation, die GitHub im <img> abspielt, ohne Skript und ohne fremden Dienst.
+# ---------------------------------------------------------------------------
+
+MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace"
+
+SPRUECHE = [
+    "It works on my homelab.",
+    "There is no cloud, it's just my basement.",
+    "99 little bugs in the code, take one down, patch it around, 117 little bugs in the code.",
+    "sudo make me a sandwich",
+    "Weeks of coding can save you hours of planning.",
+    "It's not a bug, it's an undocumented feature.",
+    "DNS: it's always DNS. Even when it isn't, it's DNS.",
+    "git commit -m 'final' && git commit -m 'final final'",
+    "A homelab is never finished, only temporarily stable.",
+    "Backups are a myth until you need one.",
+    "I don't always test my code, but when I do, I do it in production.",
+    "rm -rf node_modules && npm install: the modern prayer.",
+    "Real programmers count from 0.",
+    "Ctrl+C, Ctrl+V: the backbone of software engineering.",
+    "Have you tried turning the cluster off and on again?",
+    "Go: if err != nil { return err } x 1000",
+    "Kubernetes: because one container was too easy.",
+    "My code doesn't have bugs, it has surprise features.",
+    "TNT is just a very fast terraforming tool.",
+    "The best error message is the one that never shows up.",
+    "First, solve the problem. Then, write the code. Then, rewrite the code.",
+    "Uptime is a lifestyle.",
+    "Home is where the WiFi connects automatically.",
+    "One does not simply exit vim.",
+    "Ansible: because typing the same command on twelve hosts gets old.",
+    "There are 10 kinds of people: those who understand binary and those who don't.",
+    "Commit early, commit often, rebase never.",
+    "The fan noise is a feature. It means it's working.",
+]
+
+
+def terminal_karte(pfad, t, heute):
+    """Ein kleines Terminal, das sich beim Laden selbst tippt. Der Spruch
+    unter `fortune` wechselt jeden Tag."""
+    import datetime
+    spruch = SPRUECHE[heute.toordinal() % len(SPRUECHE)]
+    hell = t is THEMEN["hell"]
+    grund = "#f6f8fa" if hell else "#0d1117"
+    leiste = "#eaeef2" if hell else "#161b22"
+    gruen = "#1a7f37" if hell else "#3fb950"
+    zeilen = [
+        ("$ ", "whoami", gruen),
+        ("", "jonas: homelab builder, Go + React developer, photographer", t["stark"]),
+        ("$ ", "uptime", gruen),
+        ("", "self-hosted everything, clouds used: 0, coffee: yes", t["stark"]),
+        ("$ ", "fortune", gruen),
+        ("", spruch, t["akzent"]),
+    ]
+    breite, hoehe = 860, 70 + 24 * len(zeilen)
+    teile = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{breite}" height="{hoehe}" viewBox="0 0 {breite} {hoehe}" role="img" aria-label="Terminal: {spruch}">',
+        f"<style>text{{font-family:{MONO};font-size:13.5px}}"
+        ".z{clip-path:inset(0 100% 0 0);animation:tipp var(--d) steps(var(--n)) forwards;animation-delay:var(--v)}"
+        "@keyframes tipp{to{clip-path:inset(0 0 0 0)}}"
+        ".k{animation:blink 1s step-end infinite}@keyframes blink{50%{opacity:0}}</style>",
+        f'<rect x=".5" y=".5" width="{breite - 1}" height="{hoehe - 1}" rx="9" fill="{grund}" stroke="{t["linie"]}"/>',
+        f'<path d="M.5 30V9.5a9 9 0 0 1 9-9h{breite - 19}a9 9 0 0 1 9 9V30z" fill="{leiste}"/>',
+        '<circle cx="20" cy="15" r="5.5" fill="#ff5f57"/><circle cx="38" cy="15" r="5.5" fill="#febc2e"/><circle cx="56" cy="15" r="5.5" fill="#28c840"/>',
+        f'<text x="{breite / 2}" y="19.5" text-anchor="middle" fill="{t["schrift"]}" style="font-size:12px">jonas@homelab: ~</text>',
+    ]
+    v = 0.3
+    y = 56
+    for vor, text, farbe in zeilen:
+        voll = vor + text
+        n = len(voll)
+        dauer = 0.03 * n if vor else 0.012 * n
+        teile.append(
+            f'<g class="z" style="--n:{n};--d:{dauer:.2f}s;--v:{v:.2f}s"><text x="20" y="{y}" fill="{farbe}" xml:space="preserve">'
+            f'{vor}<tspan fill="{t["stark"] if vor else farbe}">{text.replace("&", "&amp;").replace("<", "&lt;")}</tspan></text></g>'
+        )
+        v += dauer + (0.35 if vor else 0.5)
+        y += 24
+    teile.append(f'<text x="20" y="{y}" fill="{gruen}">$ <tspan class="k" fill="{t["stark"]}">█</tspan></text>')
+    teile.append("</svg>")
+    open(pfad, "w").write("".join(teile))
+    return spruch
+
+
+def tnt_karte(pfad, t):
+    """Ein Block TNT mit brennender Lunte: er blinkt, schwillt an, knallt und
+    steht danach wieder da. Endlosschleife von vier Sekunden."""
+    breite, hoehe = 860, 150
+    px = 6  # Pixelgröße des 16er-Blocks
+    ox, oy = breite / 2 - 8 * px, 22
+    rot, dunkel, weiss = "#d13b2a", "#8f2216", "#f2f2f2"
+    teile = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{breite}" height="{hoehe}" viewBox="0 0 {breite} {hoehe}" role="img" aria-label="A TNT block exploding">',
+        "<style>"
+        ".b{transform-box:fill-box;transform-origin:center;animation:zuend 4s infinite}"
+        "@keyframes zuend{0%,100%{transform:scale(1);opacity:1}10%,30%,50%,70%{filter:brightness(1)}"
+        "20%,40%,60%,74%{filter:brightness(2.4)}78%{transform:scale(1.18);opacity:1}80%{transform:scale(1.25);opacity:0}"
+        "92%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}"
+        ".f{transform-box:fill-box;transform-origin:center;animation:feuer 4s infinite;opacity:0}"
+        "@keyframes feuer{0%,78%{opacity:0;transform:scale(.2)}82%{opacity:1;transform:scale(1)}95%,100%{opacity:0;transform:scale(1.6)}}"
+        ".s{animation:funke .25s steps(2) infinite}@keyframes funke{50%{opacity:.2}}"
+        f"text{{font-family:{MONO}}}"
+        "</style>",
+        '<g class="b">',
+    ]
+    for zeile in range(16):
+        for spalte in range(16):
+            if 5 <= zeile <= 10:
+                farbe = weiss
+            else:
+                farbe = rot if (spalte + zeile // 2) % 4 else dunkel
+            teile.append(f'<rect x="{ox + spalte * px}" y="{oy + zeile * px}" width="{px}" height="{px}" fill="{farbe}"/>')
+    teile.append(
+        f'<text x="{ox + 8 * px}" y="{oy + 10.2 * px}" text-anchor="middle" font-size="{4.6 * px}" font-weight="700" fill="#222">TNT</text>'
+    )
+    teile.append(f'<rect x="{ox + 7.5 * px}" y="{oy - 2 * px}" width="{px}" height="{2 * px}" fill="#555"/>')
+    teile.append(f'<circle class="s" cx="{ox + 8 * px}" cy="{oy - 2.4 * px}" r="{0.9 * px}" fill="#ffcc33"/>')
+    teile.append("</g>")
+    # Der Knall: Ringe und Splitter um die Mitte.
+    mx, my = ox + 8 * px, oy + 8 * px
+    teile.append(f'<g class="f"><circle cx="{mx}" cy="{my}" r="58" fill="#ffd166" opacity=".55"/>'
+                 f'<circle cx="{mx}" cy="{my}" r="38" fill="#ff8c42"/><circle cx="{mx}" cy="{my}" r="20" fill="#fff3b0"/>')
+    import math
+    for i in range(12):
+        w = i * math.pi / 6
+        teile.append(f'<rect x="{mx + math.cos(w) * 70 - 5:.1f}" y="{my + math.sin(w) * 52 - 5:.1f}" width="10" height="10" '
+                     f'fill="{["#d13b2a", "#f2f2f2", "#ff8c42"][i % 3]}"/>')
+    teile.append(f'<text x="{mx}" y="{my + 8}" text-anchor="middle" font-size="26" font-weight="700" fill="#7a1d0f">BOOM</text></g>')
+    teile.append("</svg>")
+    open(pfad, "w").write("".join(teile))
+
+
+def schrank_karte(pfad, t):
+    """Der Server-Schrank: jede Einheit mit blinkenden Lämpchen, jede in
+    ihrem eigenen Takt, damit es nach echtem Betrieb aussieht."""
+    import random
+    zufall = random.Random(4)
+    einheiten = [
+        ("pve1", "Proxmox node: VMs, LXC, GPUs for local LLMs"),
+        ("pve2", "Proxmox node: Docker host, k3s"),
+        ("k3s", "Kubernetes: web apps, CI rollouts"),
+        ("docker", "~45 containers: monitoring, SSO, my apps"),
+        ("pbs", "Proxmox Backup Server, nightly"),
+        ("nas", "Synology, RAID 5: files, media, backups"),
+    ]
+    hell = t is THEMEN["hell"]
+    gehaeuse = "#d0d7de" if hell else "#30363d"
+    einschub = "#f6f8fa" if hell else "#161b22"
+    breite, h = 860, 30
+    hoehe = 46 + h * len(einheiten) + 16
+    teile = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{breite}" height="{hoehe}" viewBox="0 0 {breite} {hoehe}" role="img" aria-label="Homelab rack with blinking lights">',
+        f"<style>text{{font-family:{MONO};font-size:12.5px}}.l{{animation:an var(--t) steps(1) infinite;animation-delay:var(--v)}}"
+        "@keyframes an{50%{opacity:.15}}</style>",
+        f'<text x="22" y="28" font-size="14" font-weight="600" fill="{t["akzent"]}" style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif">The homelab where all of this runs</text>',
+        f'<rect x="14" y="40" width="{breite - 28}" height="{h * len(einheiten) + 12}" rx="6" fill="{gehaeuse}"/>',
+    ]
+    for i, (name, was) in enumerate(einheiten):
+        y = 46 + i * h
+        teile.append(f'<rect x="24" y="{y}" width="{breite - 48}" height="{h - 4}" rx="3" fill="{einschub}"/>')
+        for s in range(3):
+            teile.append(f'<circle cx="{40 + s * 6}" cy="{y + 13}" r="1.6" fill="{t["linie"]}"/>')
+        teile.append(f'<text x="70" y="{y + 17.5}" font-weight="700" fill="{t["stark"]}">{name}</text>')
+        teile.append(f'<text x="150" y="{y + 17.5}" fill="{t["schrift"]}">{was}</text>')
+        for j in range(5):
+            farbe = "#3fb950" if j < 3 else ("#f97316" if j == 3 else "#58a6ff")
+            dauer = zufall.uniform(0.3, 1.9)
+            teile.append(
+                f'<rect class="l" style="--t:{dauer:.2f}s;--v:-{zufall.uniform(0, 2):.2f}s" x="{breite - 130 + j * 18}" y="{y + 9}" '
+                f'width="9" height="8" rx="1.5" fill="{farbe}"/>'
+            )
+    teile.append("</svg>")
+    open(pfad, "w").write("".join(teile))
+
+
 if __name__ == "__main__":
     daten = graphql(ABFRAGE, {"login": BENUTZER})["user"]
     for name, t in THEMEN.items():
         zeilen = statistik_karte(daten, f"karten/statistik-{name}.svg", t)
         sprachen = sprachen_karte(daten, f"karten/sprachen-{name}.svg", t)
         serien = serien_karte(daten, f"karten/serien-{name}.svg", t)
+        skyline_karte(daten, f"karten/skyline-{name}.svg", t)
+        spruch = terminal_karte(f"karten/terminal-{name}.svg", t, datetime.date.today())
+        tnt_karte(f"karten/tnt-{name}.svg", t)
+        schrank_karte(f"karten/schrank-{name}.svg", t)
     print("Statistik:", ", ".join(f"{n} {w}" for n, w in zeilen))
     print("Sprachen:", ", ".join(n for n, _ in sprachen))
+    print("Spruch:", spruch)
     print("Serien:", ", ".join(f"{n} {w}" for n, w in serien))
