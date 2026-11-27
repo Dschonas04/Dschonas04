@@ -122,12 +122,14 @@ solution works.
 ## Numbers
 
 <p align="center">
-  <img alt="Statistics" src="karten/statistik-hell.svg#gh-light-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/statistik-dunkel.svg">
+    <img alt="Statistics" src="karten/statistik-hell.svg">
+  </picture>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="karten/sprachen-dunkel.svg">
     <img alt="Languages" src="karten/sprachen-hell.svg">
   </picture>
-  <img alt="Languages" src="karten/sprachen-dunkel.svg#gh-dark-mode-only">
 </p>
 
 <p align="center">
