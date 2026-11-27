@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Zeichnet die Karten für das Profil-README: Statistik, Sprachen, Serien
-und ein paar Spielereien (Terminal, TNT, Server-Schrank).
+und ein paar Spielereien (Terminal, TNT).
 
 Warum selbst und nicht github-readme-stats: der öffentliche Dienst dort
 antwortet regelmäßig mit 503, und dann steht im Profil ein kaputtes Bild.
@@ -222,7 +222,7 @@ def serien_karte(daten, pfad, t):
 
 
 # ---------------------------------------------------------------------------
-# Spielereien: Terminal, TNT, Server-Schrank. Alles reines SVG mit CSS-
+# Spielereien: Terminal und TNT. Alles reines SVG mit CSS-
 # Animation, die GitHub im <img> abspielt, ohne Skript und ohne fremden Dienst.
 # ---------------------------------------------------------------------------
 
@@ -355,49 +355,6 @@ def tnt_karte(pfad, t):
     open(pfad, "w").write("".join(teile))
 
 
-def schrank_karte(pfad, t):
-    """Der Server-Schrank: jede Einheit mit blinkenden Lämpchen, jede in
-    ihrem eigenen Takt, damit es nach echtem Betrieb aussieht."""
-    import random
-    zufall = random.Random(4)
-    einheiten = [
-        ("pve1", "Proxmox node: VMs, LXC, GPUs for local LLMs"),
-        ("pve2", "Proxmox node: Docker host, k3s"),
-        ("k3s", "Kubernetes: web apps, CI rollouts"),
-        ("docker", "~45 containers: monitoring, SSO, my apps"),
-        ("pbs", "Proxmox Backup Server, nightly"),
-        ("nas", "Synology, RAID 5: files, media, backups"),
-    ]
-    hell = t is THEMEN["hell"]
-    gehaeuse = "#d0d7de" if hell else "#30363d"
-    einschub = "#f6f8fa" if hell else "#161b22"
-    breite, h = 860, 30
-    hoehe = 46 + h * len(einheiten) + 16
-    teile = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{breite}" height="{hoehe}" viewBox="0 0 {breite} {hoehe}" role="img" aria-label="Homelab rack with blinking lights">',
-        f"<style>text{{font-family:{MONO};font-size:12.5px}}.l{{animation:an var(--t) steps(1) infinite;animation-delay:var(--v)}}"
-        "@keyframes an{50%{opacity:.15}}</style>",
-        f'<text x="22" y="28" font-size="14" font-weight="600" fill="{t["akzent"]}" style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif">The homelab where all of this runs</text>',
-        f'<rect x="14" y="40" width="{breite - 28}" height="{h * len(einheiten) + 12}" rx="6" fill="{gehaeuse}"/>',
-    ]
-    for i, (name, was) in enumerate(einheiten):
-        y = 46 + i * h
-        teile.append(f'<rect x="24" y="{y}" width="{breite - 48}" height="{h - 4}" rx="3" fill="{einschub}"/>')
-        for s in range(3):
-            teile.append(f'<circle cx="{40 + s * 6}" cy="{y + 13}" r="1.6" fill="{t["linie"]}"/>')
-        teile.append(f'<text x="70" y="{y + 17.5}" font-weight="700" fill="{t["stark"]}">{name}</text>')
-        teile.append(f'<text x="150" y="{y + 17.5}" fill="{t["schrift"]}">{was}</text>')
-        for j in range(5):
-            farbe = "#3fb950" if j < 3 else ("#f97316" if j == 3 else "#58a6ff")
-            dauer = zufall.uniform(0.3, 1.9)
-            teile.append(
-                f'<rect class="l" style="--t:{dauer:.2f}s;--v:-{zufall.uniform(0, 2):.2f}s" x="{breite - 130 + j * 18}" y="{y + 9}" '
-                f'width="9" height="8" rx="1.5" fill="{farbe}"/>'
-            )
-    teile.append("</svg>")
-    open(pfad, "w").write("".join(teile))
-
-
 if __name__ == "__main__":
     daten = graphql(ABFRAGE, {"login": BENUTZER})["user"]
     for name, t in THEMEN.items():
@@ -406,7 +363,6 @@ if __name__ == "__main__":
         serien = serien_karte(daten, f"karten/serien-{name}.svg", t)
         spruch = terminal_karte(f"karten/terminal-{name}.svg", t, datetime.date.today())
         tnt_karte(f"karten/tnt-{name}.svg", t)
-        schrank_karte(f"karten/schrank-{name}.svg", t)
     print("Statistik:", ", ".join(f"{n} {w}" for n, w in zeilen))
     print("Sprachen:", ", ".join(n for n, _ in sprachen))
     print("Spruch:", spruch)

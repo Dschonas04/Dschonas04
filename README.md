@@ -29,13 +29,6 @@ has proven itself in daily use. Along the way I write mods for our Minecraft
 server and workshops for anyone who wants to get started. My photos are at
 [photo.jonasgroll.de](https://photo.jonasgroll.de).
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="karten/schrank-dunkel.svg">
-    <img alt="Homelab rack with blinking lights" src="karten/schrank-hell.svg">
-  </picture>
-</p>
-
 ---
 
 ## Everyday apps
