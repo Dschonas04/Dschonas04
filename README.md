@@ -12,8 +12,10 @@
 </p>
 
 <p align="center">
-  <img alt="Terminal with a quote of the day" src="karten/terminal-hell.svg#gh-light-mode-only">
-  <img alt="Terminal with a quote of the day" src="karten/terminal-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/terminal-dunkel.svg">
+    <img alt="Terminal with a quote of the day" src="karten/terminal-hell.svg">
+  </picture>
 </p>
 
 ---
@@ -28,8 +30,10 @@ server and workshops for anyone who wants to get started. My photos are at
 [photo.jonasgroll.de](https://photo.jonasgroll.de).
 
 <p align="center">
-  <img alt="Homelab rack with blinking lights" src="karten/schrank-hell.svg#gh-light-mode-only">
-  <img alt="Homelab rack with blinking lights" src="karten/schrank-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/schrank-dunkel.svg">
+    <img alt="Homelab rack with blinking lights" src="karten/schrank-hell.svg">
+  </picture>
 </p>
 
 ---
@@ -71,8 +75,10 @@ server and workshops for anyone who wants to get started. My photos are at
 Mods for Minecraft Java on Fabric, made for our own server.
 
 <p align="center">
-  <img alt="A TNT block exploding" src="karten/tnt-hell.svg#gh-light-mode-only">
-  <img alt="A TNT block exploding" src="karten/tnt-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/tnt-dunkel.svg">
+    <img alt="A TNT block exploding" src="karten/tnt-hell.svg">
+  </picture>
 </p>
 
 | Project | What it does | Status |
@@ -117,24 +123,32 @@ solution works.
 
 <p align="center">
   <img alt="Statistics" src="karten/statistik-hell.svg#gh-light-mode-only">
-  <img alt="Languages" src="karten/sprachen-hell.svg#gh-light-mode-only">
-  <img alt="Statistics" src="karten/statistik-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/sprachen-dunkel.svg">
+    <img alt="Languages" src="karten/sprachen-hell.svg">
+  </picture>
   <img alt="Languages" src="karten/sprachen-dunkel.svg#gh-dark-mode-only">
 </p>
 
 <p align="center">
-  <img alt="Streaks" src="karten/serien-hell.svg#gh-light-mode-only">
-  <img alt="Streaks" src="karten/serien-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/serien-dunkel.svg">
+    <img alt="Streaks" src="karten/serien-hell.svg">
+  </picture>
 </p>
 
 <p align="center">
-  <img alt="Commits as a skyline" src="karten/skyline-hell.svg#gh-light-mode-only">
-  <img alt="Commits as a skyline" src="karten/skyline-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/skyline-dunkel.svg">
+    <img alt="Commits as a skyline" src="karten/skyline-hell.svg">
+  </picture>
 </p>
 
 <p align="center">
-  <img alt="A snake eating the contribution graph" src="karten/schlange-hell.svg#gh-light-mode-only">
-  <img alt="A snake eating the contribution graph" src="karten/schlange-dunkel.svg#gh-dark-mode-only">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="karten/schlange-dunkel.svg">
+    <img alt="A snake eating the contribution graph" src="karten/schlange-hell.svg">
+  </picture>
 </p>
 
 <p align="center">
