@@ -141,13 +141,6 @@ solution works.
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="karten/skyline-dunkel.svg">
-    <img alt="Commits as a skyline" src="karten/skyline-hell.svg">
-  </picture>
-</p>
-
-<p align="center">
-  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="karten/schlange-dunkel.svg">
     <img alt="A snake eating the contribution graph" src="karten/schlange-hell.svg">
   </picture>
@@ -157,7 +150,7 @@ solution works.
   <sub>
     Redrawn every night by <a href="karten.py">karten.py</a> and
     <a href="https://github.com/Platane/snk">Platane/snk</a> in this repository,
-    no third-party service. The quote in the terminal changes daily. Commits, streaks and the skyline include private contributions; repositories
+    no third-party service. The quote in the terminal changes daily. Commits and streaks include private contributions; repositories
     and languages count public ones only.
   </sub>
 </p>

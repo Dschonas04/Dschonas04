@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Zeichnet die Karten für das Profil-README: Statistik, Sprachen, Serien,
-Skyline und ein paar Spielereien (Terminal, TNT, Server-Schrank).
+"""Zeichnet die Karten für das Profil-README: Statistik, Sprachen, Serien
+und ein paar Spielereien (Terminal, TNT, Server-Schrank).
 
 Warum selbst und nicht github-readme-stats: der öffentliche Dienst dort
 antwortet regelmäßig mit 503, und dann steht im Profil ein kaputtes Bild.
@@ -170,84 +170,6 @@ def tage(daten):
         for d in w["contributionDays"]:
             l.append((d["date"], d["contributionCount"], d["weekday"]))
     return l
-
-def skyline_karte(daten, pfad, t):
-    """Das letzte Jahr als Stadt: jede Woche eine Reihe, jeder Tag ein Turm.
-
-    Isometrisch gezeichnet, die Türme wachsen beim Laden nacheinander aus dem
-    Boden (CSS-Animation, die GitHub im Bild abspielt). Die Höhe folgt der
-    Wurzel der Anzahl: ein Tag mit 60 Commits soll nicht alles andere platt
-    drücken.
-    """
-    wochen = daten["contributionsCollection"]["contributionCalendar"]["weeks"]
-    hoechst = max((d["contributionCount"] for w in wochen for d in w["contributionDays"]), default=1) or 1
-    breite, hoehe = 860, 300
-    akzent = t["akzent"]
-    # Drei Töne je Turm: Dach hell, links mittel, rechts dunkel.
-    def toene(stufe):
-        if t is THEMEN["hell"]:
-            basis = [(253, 186, 116), (251, 146, 60), (234, 88, 12), (194, 65, 12)]
-        else:
-            basis = [(154, 52, 18), (194, 65, 12), (234, 88, 12), (251, 146, 60)]
-        r, g, b = basis[stufe]
-        f = lambda k: f"rgb({int(r * k)},{int(g * k)},{int(b * k)})"
-        return f(1.0), f(0.82), f(0.66)
-    leer = t["linie"]
-    teile = [kopf(breite, hoehe, "Contributions as a skyline", t)]
-    teile.append(
-        "<style>.t{transform-box:fill-box;transform-origin:bottom;animation:auf .9s cubic-bezier(.2,.8,.2,1) both}"
-        "@keyframes auf{from{transform:scaleY(0)}to{transform:scaleY(1)}}</style>"
-    )
-    teile.append(f'<text x="22" y="30" font-size="14" font-weight="600" fill="{akzent}">Commits, last 12 months</text>')
-    teile.append(f'<text x="22" y="48" font-size="11.5" fill="{t["schrift"]}">one tower per day, one row per week</text>')
-    # Wochen laufen nach rechts (leicht abfallend), Wochentage nach vorn.
-    W = (12.6, 1.6)
-    D = (4.2, 6.2)
-    ox, oy, hmax = 50, 120, 70.0
-    zuerst = []
-    for wi, w in enumerate(wochen):
-        for d in w["contributionDays"]:
-            zuerst.append((wi, d["weekday"], d["contributionCount"]))
-    # Hinten (Sonntag) vor vorn (Samstag), links vor rechts.
-    zuerst.sort(key=lambda x: (x[1], x[0]))
-    pt = lambda px, py: f"{px:.1f},{py:.1f}"
-    for wi, tag, n in zuerst:
-        x = ox + wi * W[0] + tag * D[0]
-        y = oy + wi * W[1] + tag * D[1]
-        w0, w1 = W[0] * 0.86, W[1] * 0.86
-        d0, d1 = D[0] * 0.86, D[1] * 0.86
-        h = 1.5 if n == 0 else 4 + hmax * (n / hoechst) ** 0.5
-        if n == 0:
-            dach = vorn = seite = leer
-        else:
-            stufe = min(3, int(4 * (n / hoechst) ** 0.5))
-            dach, vorn, seite = toene(stufe)
-        a0 = (x, y - h)
-        a1 = (x + w0, y + w1 - h)
-        a2 = (x + w0 + d0, y + w1 + d1 - h)
-        a3 = (x + d0, y + d1 - h)
-        oben = [pt(*a0), pt(*a1), pt(*a2), pt(*a3)]
-        front = [pt(*a3), pt(*a2), pt(a2[0], a2[1] + h), pt(a3[0], a3[1] + h)]
-        rechts = [pt(*a1), pt(*a2), pt(a2[0], a2[1] + h), pt(a1[0], a1[1] + h)]
-        verz = f' style="animation-delay:{wi * 22 + tag * 6}ms"' if n else ""
-        teile.append(
-            f'<g class="t"{verz}><polygon points="{" ".join(front)}" fill="{vorn}"/>'
-            f'<polygon points="{" ".join(rechts)}" fill="{seite}"/>'
-            f'<polygon points="{" ".join(oben)}" fill="{dach}"/></g>'
-        )
-    # Monatsnamen unter der vordersten Reihe.
-    monat = None
-    for wi, w in enumerate(wochen):
-        m = w["contributionDays"][0]["date"][5:7]
-        if m != monat:
-            monat = m
-            name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][int(m) - 1]
-            x = ox + wi * W[0] + 7 * D[0]
-            y = oy + wi * W[1] + 7 * D[1] + 16
-            teile.append(f'<text x="{x:.1f}" y="{y:.1f}" font-size="10" fill="{t["schrift"]}">{name}</text>')
-    teile.append("</svg>")
-    open(pfad, "w").write("".join(teile))
-
 
 def serien_karte(daten, pfad, t):
     import datetime
@@ -482,7 +404,6 @@ if __name__ == "__main__":
         zeilen = statistik_karte(daten, f"karten/statistik-{name}.svg", t)
         sprachen = sprachen_karte(daten, f"karten/sprachen-{name}.svg", t)
         serien = serien_karte(daten, f"karten/serien-{name}.svg", t)
-        skyline_karte(daten, f"karten/skyline-{name}.svg", t)
         spruch = terminal_karte(f"karten/terminal-{name}.svg", t, datetime.date.today())
         tnt_karte(f"karten/tnt-{name}.svg", t)
         schrank_karte(f"karten/schrank-{name}.svg", t)
